@@ -10,7 +10,7 @@ services:
       - oracle-db
     environment:
       - SPRING_PROFILES_ACTIVE=dev
-      - JWT_SECRET=${JWT_SECRET}
+      - JWT_SECRET=segredo123
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -26,8 +26,13 @@ services:
       - ORACLE_PASSWORD=120206
       - APP_USER=RM556652
       - APP_USER_PASSWORD=120206
+    volumes:
+      - oracle_data:/opt/oracle/oradata
     healthcheck:
       test: ["CMD", "ls"]
       interval: 30s
       timeout: 10s
       retries: 3
+
+volumes:
+  oracle_data:
