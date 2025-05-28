@@ -1,4 +1,3 @@
-
 package br.com.fiap.stormsafe.model;
 
 import jakarta.persistence.*;
@@ -32,4 +31,8 @@ public class Usuario {
 
     @NotBlank
     private String tipoUsuario;
+
+    @NotBlank
+    @Size(min = 8)
+    private String senha;
 }
