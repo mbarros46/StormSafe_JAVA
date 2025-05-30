@@ -1,93 +1,113 @@
+# 🌪️ StormSafe API
 
-# 🌪️ StormSafe - API REST Java Spring Boot
+API REST desenvolvida em Java com Spring Boot como parte da Global Solution FIAP 2025. A proposta do projeto é oferecer uma solução tecnológica inovadora para mitigar os impactos de desastres naturais e eventos climáticos extremos, facilitando o monitoramento, alerta e evacuação de áreas de risco.
 
-StormSafe é uma solução inteligente para evacuação em situações de enchentes, integrando sensores IoT, inteligência artificial e geolocalização para orientar a população em tempo real por rotas seguras.
+## 🚀 Visão Geral
+
+StormSafe é uma API centralizadora de dados relacionados a sensores ambientais, alertas de calor extremo, regiões monitoradas e rotas de evacuação. A solução visa:
+
+- Coletar dados de sensores em tempo real.
+- Emitir alertas automáticos para áreas de risco.
+- Propor rotas de evacuação seguras.
+- Garantir acesso via sistema web ou mobile.
+
+---
 
 ## 📦 Tecnologias Utilizadas
 
-- Java 17
-- Spring Boot 3
+- Java 21
+- Spring Boot 3.2.3
 - Spring Data JPA
-- Spring Security + JWT
 - Bean Validation
-- OpenAPI / Swagger
-- Oracle Database (via Docker)
-- Docker & Docker Compose
+- Oracle Database (via JDBC)
+- Swagger OpenAPI
+- HikariCP
+- Docker (para futuro deploy)
+- Railway (ou Render) para deploy na nuvem
 
-## 📁 Estrutura do Projeto
+---
 
-```
-src/main/java/br/com/fiap/stormsafe
-├── config         # Configurações de segurança, CORS, Swagger
-├── controller     # Endpoints REST
-├── dto            # Objetos de transferência de dados
-├── exception      # Tratamento global de exceções
-├── model          # Entidades JPA
-├── repository     # Interfaces de persistência
-├── service        # Lógica de negócio
-└── util           # Utilitários e mapeadores
-```
+## 🛠️ Funcionalidades da API
 
-## 🚀 Como Executar Localmente
+- Cadastro e consulta de **usuários**
+- Registro de **sensores IoT**
+- Leitura periódica dos sensores
+- Geração e consulta de **alertas**
+- Cadastro de **regiões** e **rotas de evacuação**
+- Registro de **logs de evacuação**
 
-1. Gere o `.jar` do projeto:
+---
+
+## 🔐 Autenticação (Em Desenvolvimento)
+
+> 🔴 A autenticação JWT foi removida temporariamente. A versão final da API será protegida com `Bearer Token JWT` nos endpoints privados.
+
+---
+
+## 📑 Documentação Swagger
+
+Acesse a documentação completa e interativa:
+
+👉 [`http://localhost:8080/swagger-ui/index.html`](http://localhost:8080/swagger-ui/index.html)
+
+---
+
+## 🧪 Exemplo de Endpoints
+
+- `GET /usuarios` – Lista todos os usuários (paginado)
+- `POST /sensores` – Cadastra novo sensor
+- `GET /alertas` – Consulta alertas emitidos
+- `GET /regioes` – Lista regiões monitoradas
+- `POST /rotas` – Cria nova rota de evacuação
+
+---
+
+## 📂 Estrutura do Projeto
+
+br.com.fiap.stormsafe
+├── config # Swagger, Security
+├── controller # REST Controllers
+├── dto # Data Transfer Objects
+├── model # Entidades JPA
+├── repository # Interfaces JPA
+├── service # Lógica de negócio
+└── StormsafeApplication.java
+
+yaml
+Copiar
+Editar
+
+---
+
+## 🧪 Como Executar Localmente
+
+### Pré-requisitos
+
+- Java 21+
+- Maven
+- Oracle Database (instância local ou remota)
+
+### Passos
+
 ```bash
-./mvnw clean package
-```
+# Clone o projeto
+git clone https://github.com/seu-usuario/StormSafe_JAVA.git
+cd StormSafe_JAVA
 
-2. Execute via Docker:
-```bash
-docker-compose up --build
-```
+# Compile e execute
+mvn spring-boot:run
+A aplicação rodará em: http://localhost:8080
 
-3. Acesse:
-- API: http://localhost:8080
-- Swagger: http://localhost:8080/swagger-ui.html
+☁️ Deploy em Nuvem
+🚧 O deploy será realizado na plataforma Railway com banco Oracle integrado. A URL de produção será adicionada abaixo:
 
-## 🔐 Autenticação
+🔗 Produção: em breve
 
-- JWT obrigatório nos endpoints protegidos.
-- Adicione o token no Swagger em **Authorize** com `Bearer <token>`.
+👨‍💻 Equipe
+Pedro Merise (RM556826)
 
-## 📄 Variáveis de Ambiente
+Miguel Barros Ramos (RM556652)
 
-Use o `.env.example` como base:
+📄 Licença
+Este projeto é acadêmico e não possui licença comercial.
 
-```
-JWT_SECRET=segredoUltraSeguro123
-```
-
-## 📦 Endpoints Principais
-
-| Entidade         | Endpoint base       |
-|------------------|---------------------|
-| Usuários         | `/usuarios`         |
-| Regiões          | `/regioes`          |
-| Sensores         | `/sensores`         |
-| Leituras         | `/leituras`         |
-| Alertas          | `/alertas`          |
-| Rotas Evacuação  | `/rotas`            |
-| Logs Evacuação   | `/evacuacoes`       |
-
-## ✅ Funcionalidades
-
-- CRUD completo com validação
-- Paginação, ordenação e filtros
-- Documentação Swagger
-- Autenticação com JWT
-- Pronto para deploy com Docker
-
-## 📽️ Entregáveis
-
-- ✅ Repositório no GitHub
-- ✅ Vídeo de demonstração (máx. 10 min)
-- ✅ Pitch do projeto (máx. 3 min)
-
-## 🧠 Projeto acadêmico
-
-Desenvolvido como parte da Global Solution FIAP — disciplina Java Advanced.
-
-## Membros
-
-- Miguel Barros Ramos
-- Pedro Valentim Merise
