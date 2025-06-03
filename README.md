@@ -91,8 +91,9 @@ Editar
 
 ```bash
 # Clone o projeto
-git clone https://github.com/seu-usuario/StormSafe_JAVA.git
+git clone https://github.com/mbarros46/StormSafe_JAVA.git
 cd StormSafe_JAVA
+
 
 # Compile e execute
 mvn spring-boot:run
