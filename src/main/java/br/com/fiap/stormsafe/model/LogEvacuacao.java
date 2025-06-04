@@ -1,37 +1,36 @@
-
 package br.com.fiap.stormsafe.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Table(name = "TBL_LOG_EVACUACAO")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
+@EqualsAndHashCode(of = "id")
 public class LogEvacuacao {
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLog;
-
-    @NotNull
-    private LocalDate dataInicio;
-
-    private LocalDate dataFim;
-
-    @NotBlank
-    private String status;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_evacuacao_seq")
+    @SequenceGenerator(name = "log_evacuacao_seq", sequenceName = "SEQ_TBL_LOG_EVACUACAO", allocationSize = 1)
+    @Column(name = "id_log")
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
+    private Usuario usuario;  // Associação com o Usuario
 
     @ManyToOne
-    @JoinColumn(name = "id_rota", nullable = false)
-    private RotaEvacuacao rota;
+    @JoinColumn(name = "id_regiao", nullable = false)
+    private Regiao regiao;  // Associação com a Regiao
+
+    @NotNull(message = "Data e hora são obrigatórias")
+    private LocalDateTime dataHora;
+
+    @NotNull(message = "Descrição é obrigatória")
+    private String descricao;
 }

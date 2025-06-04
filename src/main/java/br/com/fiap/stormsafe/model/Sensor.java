@@ -1,31 +1,39 @@
-
 package br.com.fiap.stormsafe.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import java.util.List;
 
 @Entity
-@Data
+@Table(name = "TBL_SENSOR")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
+@EqualsAndHashCode(of = "id")
 public class Sensor {
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSensor;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sensor_seq")
+    @SequenceGenerator(name = "sensor_seq", sequenceName = "SEQ_TBL_SENSOR", allocationSize = 1)
+    @Column(name = "id_sensor")
+    private Long id;
 
-    @NotBlank
-    private String tipoSensor;
+    @NotNull(message = "Tipo do sensor é obrigatório")
+    @Enumerated(EnumType.STRING)
+    private TipoSensor tipoSensor;
 
-    @NotBlank
+    @NotBlank(message = "Localização é obrigatória")
     private String localizacao;
 
-    @NotBlank
-    private String status;
+    @NotNull(message = "Status do sensor é obrigatório")
+    @Enumerated(EnumType.STRING)
+    private StatusSensor status;
 
-    @ManyToOne
-    @JoinColumn(name = "id_regiao", nullable = false)
-    private Regiao regiao;
+    @OneToMany(mappedBy = "sensor")
+    private List<LeituraSensor> leituras;
+
+
 }

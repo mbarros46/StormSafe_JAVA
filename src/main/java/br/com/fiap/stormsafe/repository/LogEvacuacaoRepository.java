@@ -1,11 +1,9 @@
-
 package br.com.fiap.stormsafe.repository;
 
-import br.com.fiap.stormsafe.model.LogEvacuacao;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-@Repository
-public interface LogEvacuacaoRepository extends JpaRepository<LogEvacuacao, Long> {
+import br.com.fiap.stormsafe.model.LogEvacuacao;
 
+public interface LogEvacuacaoRepository extends JpaRepository<LogEvacuacao, Long>, JpaSpecificationExecutor<LogEvacuacao> {
 }
