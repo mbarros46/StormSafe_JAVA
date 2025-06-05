@@ -1,18 +1,18 @@
 package br.com.fiap.stormsafe.service;
 
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-
 import br.com.fiap.stormsafe.model.TipoUsuario;
 import br.com.fiap.stormsafe.model.Token;
 import br.com.fiap.stormsafe.model.Usuario;
 
-
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+
+@Service
 public class TokenService {
     
     private final Algorithm algorithm = Algorithm.HMAC256("secret"); // Em produção, use variável de ambiente segura
