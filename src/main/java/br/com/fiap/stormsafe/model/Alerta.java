@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class Alerta {
    
     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alerta_seq")
     @SequenceGenerator(name = "alerta_seq", sequenceName = "SEQ_TBL_ALERTA", allocationSize = 1)
