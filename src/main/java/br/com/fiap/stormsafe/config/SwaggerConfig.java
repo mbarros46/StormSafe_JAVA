@@ -12,13 +12,12 @@ import org.springframework.context.annotation.Configuration;
 
 public class SwaggerConfig {
 
-        @Bean
-        public OpenAPI customOpenAPI() {
+    @Bean
+    public OpenAPI customOpenAPI() {
         final String securitySchemeName = "bearerAuth";
 
         return new OpenAPI()
-                .info(new Info().title("StormSafe API").version("1.0")
-                        .description("API para monitoramento e prevenção de enchentes com autenticação JWT"))
+                .info(new Info().title("StormSafe API").version("1.0").description("API para monitoramento e prevenção de enchentes com autenticação JWT"))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
                         .addSecuritySchemes(securitySchemeName,
