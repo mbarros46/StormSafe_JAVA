@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "TBL_LOG_EVACUACAO")
+@Table(name = "TBL_LOGEVACUACAO")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class LogEvacuacao {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_evacuacao_seq")
-    @SequenceGenerator(name = "log_evacuacao_seq", sequenceName = "SEQ_TBL_LOG_EVACUACAO", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "logevacuacao_seq")
+    @SequenceGenerator(name = "logevacuacao_seq", sequenceName = "SEQ_TBL_LOGEVACUACAO", allocationSize = 1)
     @Column(name = "id_log")
     private Long id;
 

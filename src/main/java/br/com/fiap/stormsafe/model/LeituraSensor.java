@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "TBL_LEITURA_SENSOR")
+@Table(name = "TBL_LEITURASENSOR")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,8 +16,8 @@ public class LeituraSensor {
     
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "leitura_sensor_seq")
-    @SequenceGenerator(name = "leitura_sensor_seq", sequenceName = "SEQ_TBL_LEITURA_SENSOR", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "leiturasensor_seq")
+    @SequenceGenerator(name = "leiturasensor_seq", sequenceName = "SEQ_TBL_LEITURASENSOR", allocationSize = 1)
     @Column(name = "id_leitura")
     private Long id;
 
