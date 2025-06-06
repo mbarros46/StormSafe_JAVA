@@ -1,38 +1,33 @@
-version: '3.8'
+version: '3.7'
 
 services:
-  stormsafe-api:
+  app:
     build: .
-    container_name: stormsafe-api
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/stormsafe
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - stormsafe-network
     depends_on:
-      - oracle-db
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      - JWT_SECRET=segredo123
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      - db
 
-  oracle-db:
-    image: gvenzl/oracle-xe
-    container_name: oracle-db
-    ports:
-      - "1521:1521"
+  db:
+    image: postgres:13
     environment:
-      - ORACLE_PASSWORD=120206
-      - APP_USER=RM556652
-      - APP_USER_PASSWORD=120206
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=stormsafe
+    networks:
+      - stormsafe-network
     volumes:
-      - oracle_data:/opt/oracle/oradata
-    healthcheck:
-      test: ["CMD", "ls"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  stormsafe-network:
+    driver: bridge
 
 volumes:
-  oracle_data:
+  postgres-data:
