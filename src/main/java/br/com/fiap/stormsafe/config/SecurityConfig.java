@@ -26,34 +26,38 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        // Acesso livre para Swagger e login
                         .requestMatchers(
                                 "/login/**",
                                 "/swagger-ui.html",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**"
                         ).permitAll()
-                        // Alteração: Permitir acesso ao POST de /api/usuarios
-                        .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll() 
-                        // Alteração: Protege a rota GET para listar /users (somente ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasRole("ADMIN")
-                        // Garante que qualquer outra rota de /usuarios necessite de autenticação
+
+                        // Permite cadastro de novos usuários sem autenticação
+                        .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+
+                        // Permite ADMIN e USER verem a lista de usuários (ajuste principal)
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasAnyRole("ADMIN", "CIVIL")
+
+                        // Outras rotas de usuários requerem autenticação
                         .requestMatchers("/api/usuarios/**").authenticated()
 
-                        // Permite o acesso aos alertas para todos os usuários
-                        .requestMatchers(HttpMethod.GET, "/alert/**").permitAll() 
-                        .requestMatchers("/alert/**").authenticated() // Requer autenticação para modificações nos alertas
+                        // Alertas: leitura pública, edição autenticada
+                        .requestMatchers(HttpMethod.GET, "/alert/**").permitAll()
+                        .requestMatchers("/alert/**").authenticated()
 
-                        // Permite o acesso às rotas de evacuação públicas
-                        .requestMatchers(HttpMethod.GET, "/evacuationRoute/**").permitAll() 
-                        .requestMatchers("/evacuationRoute/**").hasRole("ADMIN") // Somente administradores podem atualizar as rotas
+                        // Rotas de evacuação: leitura pública, edição só para ADMIN
+                        .requestMatchers(HttpMethod.GET, "/evacuationRoute/**").permitAll()
+                        .requestMatchers("/evacuationRoute/**").hasRole("ADMIN")
 
-                        // Permite o acesso a informações dos sensores
-                        .requestMatchers(HttpMethod.GET, "/sensor/**").permitAll() 
-                        .requestMatchers("/sensor/**").authenticated() // Requer autenticação para atualizações nos sensores
+                        // Sensores: leitura pública, edição autenticada
+                        .requestMatchers(HttpMethod.GET, "/sensor/**").permitAll()
+                        .requestMatchers("/sensor/**").authenticated()
 
-                        // Permite que todos vejam localizações de usuários
-                        .requestMatchers(HttpMethod.GET, "/userLocation/**").permitAll() 
-                        .requestMatchers("/userLocation/**").authenticated() // Requer autenticação para modificar dados de localização dos usuários
+                        // Localização de usuários: leitura pública, edição autenticada
+                        .requestMatchers(HttpMethod.GET, "/userLocation/**").permitAll()
+                        .requestMatchers("/userLocation/**").authenticated()
                 )
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
