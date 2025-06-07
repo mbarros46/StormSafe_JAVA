@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
-@Table(name = "TBL_ROTA_EVACUACAO")
+@Table(name = "TBL_ROTAEVACUACAO")
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,7 +16,7 @@ public class RotaEvacuacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rota_evacuacao_seq")
-    @SequenceGenerator(name = "rota_evacuacao_seq", sequenceName = "SEQ_TBL_ROTA_EVACUACAO", allocationSize = 1)
+    @SequenceGenerator(name = "rota_evacuacao_seq", sequenceName = "SEQ_TBL_ROTAEVACUACAO", allocationSize = 1)
     @Column(name = "id_rota_evacuacao")
     private Long id;
 

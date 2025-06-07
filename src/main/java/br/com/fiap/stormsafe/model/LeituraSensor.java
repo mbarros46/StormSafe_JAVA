@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "TBL_LEITURA_SENSOR")
+@Table(name = "TBL_LEITURASENSOR")
 @Data
 @Builder
 @NoArgsConstructor
@@ -29,7 +29,7 @@ public class LeituraSensor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "leitura_sensor_seq")
-    @SequenceGenerator(name = "leitura_sensor_seq", sequenceName = "SEQ_TBL_LEITURA_SENSOR", allocationSize = 1)
+    @SequenceGenerator(name = "leitura_sensor_seq", sequenceName = "SEQ_TBL_LEITURASENSOR", allocationSize = 1)
     @Column(name = "id_leitura_sensor")
     private Long id;
 
