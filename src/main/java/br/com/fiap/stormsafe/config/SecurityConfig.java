@@ -38,7 +38,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
 
                         // Permite ADMIN e USER verem a lista de usuários (ajuste principal)
-                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasAnyRole("ADMIN", "CIVIL")
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios").permitAll()
 
                         // Outras rotas de usuários requerem autenticação
                         .requestMatchers("/api/usuarios/**").authenticated()

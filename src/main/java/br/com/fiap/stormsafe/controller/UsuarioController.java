@@ -62,7 +62,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar usuários cadastrados", description = "Retorna todos os usuários cadastrados (Apenas ADMIN)")
+    @Operation(summary = "Listar usuários cadastrados", description = "Retorna todos os usuários cadastrados")
     @Cacheable("usuarios")
     public ResponseEntity<?> listarUsuarios(
             @RequestParam(required = false) String nome,
@@ -70,12 +70,6 @@ public class UsuarioController {
             @ParameterObject @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
             @AuthenticationPrincipal Usuario usuarioAuth
     ) {
-        if (usuarioAuth == null || !usuarioAuth.getTipoUsuario().equals(TipoUsuario.ADMIN)) {
-            return ResponseEntity
-                    .status(HttpStatus.FORBIDDEN)
-                    .body("Acesso negado: Somente administradores podem visualizar os usuários.");
-        }
-
         var filters = new UsuarioFilters(nome, email);
         var specification = UsuarioSpecification.withFilters(filters);
 
