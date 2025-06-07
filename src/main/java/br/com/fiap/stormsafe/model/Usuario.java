@@ -26,7 +26,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Table(name = "TBL_USUARIO")
 @Builder
@@ -50,7 +49,8 @@ public class Usuario implements UserDetails {
     @Column(unique = true)
     private String email;
 
-    @Size(min = 5, message = "A senha deve ter no mínimo 5 caracteres")
+    // Atualizado para exigir pelo menos 8 caracteres para a senha
+    @Size(min = 8, message = "A senha deve ter no mínimo 8 caracteres")
     @NotBlank(message = "campo obrigatório")
     private String senha;
 
