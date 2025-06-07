@@ -1,18 +1,31 @@
 package br.com.fiap.stormsafe.model;
 
+import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "TBL_SENSOR")
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @EqualsAndHashCode(of = "id")
 public class Sensor {
     
@@ -22,19 +35,18 @@ public class Sensor {
     @Column(name = "id_sensor")
     private Long id;
 
-    @NotNull(message = "Tipo do sensor é obrigatório")
+    @NotNull(message = "Campo obrigatório")
     @Enumerated(EnumType.STRING)
     private TipoSensor tipoSensor;
 
-    @NotBlank(message = "Localização é obrigatória")
+    @NotBlank(message = "Campo obrigatório")
     private String localizacao;
 
-    @NotNull(message = "Status do sensor é obrigatório")
+    @NotNull(message = "Campo obrigatório")
     @Enumerated(EnumType.STRING)
     private StatusSensor status;
 
     @OneToMany(mappedBy = "sensor")
     private List<LeituraSensor> leituras;
-
 
 }

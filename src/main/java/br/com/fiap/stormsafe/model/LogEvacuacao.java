@@ -1,36 +1,52 @@
 package br.com.fiap.stormsafe.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 @Entity
-@Table(name = "TBL_LOGEVACUACAO")
+@Table(name = "TBL_LOG_EVACUACAO")
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @EqualsAndHashCode(of = "id")
 public class LogEvacuacao {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "logevacuacao_seq")
-    @SequenceGenerator(name = "logevacuacao_seq", sequenceName = "SEQ_TBL_LOGEVACUACAO", allocationSize = 1)
-    @Column(name = "id_log")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_evacuacao_seq")
+    @SequenceGenerator(name = "log_evacuacao_seq", sequenceName = "SEQ_TBL_LOG_EVACUACAO", allocationSize = 1)
+    @Column(name = "id_log_evacuacao")
     private Long id;
 
+    @NotNull(message = "Campo obrigatório")
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;  // Associação com o Usuario
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
+    @NotNull(message = "Campo obrigatório")
     @ManyToOne
-    @JoinColumn(name = "id_regiao", nullable = false)
-    private Regiao regiao;  // Associação com a Regiao
+    @JoinColumn(name = "id_regiao")
+    private Regiao regiao;
 
-    @NotNull(message = "Data e hora são obrigatórias")
+    @NotNull(message = "Campo obrigatório")
     private LocalDateTime dataHora;
 
-    @NotNull(message = "Descrição é obrigatória")
+    @NotBlank(message = "Campo obrigatório")
     private String descricao;
 }
