@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Sensor {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sensor_seq")
     @SequenceGenerator(name = "sensor_seq", sequenceName = "SEQ_TBL_SENSOR", allocationSize = 1)
@@ -49,12 +49,4 @@ public class Sensor {
     @OneToMany(mappedBy = "sensor")
     private List<LeituraSensor> leituras;
 
-    // Métodos manuais para evitar erro no Render
-    public StatusSensor getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusSensor status) {
-        this.status = status;
-    }
 }
