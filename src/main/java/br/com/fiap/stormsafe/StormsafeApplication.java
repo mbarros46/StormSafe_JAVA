@@ -5,8 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class StormSafeApplication {
+public class StormsafeApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StormSafeApplication.class, args);
+        SpringApplication.run(StormsafeApplication.class, args);
     }
 }
+
+
