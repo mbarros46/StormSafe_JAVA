@@ -1,14 +1,12 @@
-# Usar imagem base do OpenJDK
-FROM eclipse-temurin:17-jdk
-
-# Definir o diretório de trabalho
+# Etapa 1: build do projeto
+FROM maven:3.9.2-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copiar o arquivo JAR para o diretório de trabalho no contêiner
-COPY target/stormsafe-1.0.0.jar app.jar
-
-# Expor a porta para acesso externo
+# Etapa 2: imagem final apenas com o JAR
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Rodar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
