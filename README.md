@@ -148,9 +148,20 @@ curl -X 'POST' \
 
 ---
 
-## 🌐 Deploy em Nuvem
+☁️ Deploy em Nuvem (Render)
+A API está publicada na plataforma Render e pode ser acessada online:
 
-A aplicação também pode ser implantada em plataformas de nuvem. Atualmente, está disponível via Render (o link pode mudar):
+🔗 Projeto esta rodando neste link:
+[https://dashboard.render.com/web/srv-d11ifqe3jp1c73f1j3l0/deploys/dep-d11ifqm3jp1c73f1j3p0?r=2025-06-06%4017%3A38%3A54%7E2025-06-06%4017%3A41%3A01](https://dashboard.render.com/web/srv-d11ifqe3jp1c73f1j3l0/deploys/dep-d11ifqm3jp1c73f1j3p0?r=2025-06-06%4017%3A38%3A54%7E2025-06-06%4017%3A41%3A01)
+
+
+🔗 API Base URL:
+https://stormsafe-java.onrender.com
+
+🔗 Swagger (Documentação Interativa):
+https://stormsafe-java.onrender.com/swagger-ui/index.html
+
+⚠️ Importante: como o Render está em plano gratuito, a primeira requisição pode demorar ~50 segundos. Após esse tempo, o servidor permanece ativo por alguns minutos.
 
 🔗 [https://dashboard.render.com/web/srv-d11ifqe3jp1c73f1j3l0/deploys/dep-d11ifqm3jp1c73f1j3p0?r=2025-06-06%4017%3A38%3A54%7E2025-06-06%4017%3A41%3A01](https://dashboard.render.com/web/srv-d11ifqe3jp1c73f1j3l0/deploys/dep-d11ifqm3jp1c73f1j3p0?r=2025-06-06%4017%3A38%3A54%7E2025-06-06%4017%3A41%3A01)
 
