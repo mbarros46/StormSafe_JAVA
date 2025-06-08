@@ -1,5 +1,6 @@
 # 🌧️ StormSafe API - Monitoramento e Prevenção de Enchentes
 
+
 ![StormSafe Banner](https://via.placeholder.com/1200x300/2C3E50/FFFFFF?text=StormSafe+API)
 
 A **StormSafe API** é um sistema backend robusto construído com **Spring Boot**, dedicado ao monitoramento e prevenção de enchentes. Utilizando dados de sensores e informações climáticas, a aplicação oferece uma série de endpoints RESTful para gerenciar alertas, sensores, regiões, rotas de evacuação e muito mais, fornecendo dados cruciais para a segurança de áreas de risco.
